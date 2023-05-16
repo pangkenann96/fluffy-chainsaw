@@ -25,11 +25,13 @@ const ClickableText = () => {
 
     if (clicked) {
       fetchData();
+    } else {
+      setClickedText('');
     }
   }, [clicked]);
 
   const handleClick = () => {
-    setClicked(true);
+    setClicked(!clicked);
   };
 
   return (
