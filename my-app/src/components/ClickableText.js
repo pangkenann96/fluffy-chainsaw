@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-const fetchData = async (url) => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-};
-
-const ClickableText = ({ initialText, clickedText }) => {
+const ClickableText = ({ initialText }) => {
   const [clicked, setClicked] = useState(false);
-  const [data, setData] = useState(null);
+  const [clickedText, setClickedText] = useState('');
 
   useEffect(() => {
-    const fetchClickedText = async () => {
-      const clickedData = await fetchData(clickedText);
-      setData(clickedData);
+    const fetchData = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+      const data = await response.json();
+      setClickedText(data.title);
     };
 
     if (clicked) {
-      fetchClickedText();
+      fetchData();
     }
-  }, [clicked, clickedText]);
+  }, [clicked]);
 
   const handleClick = () => {
     setClicked(true);
@@ -27,7 +22,7 @@ const ClickableText = ({ initialText, clickedText }) => {
 
   return (
     <div onClick={handleClick}>
-      {clicked ? <p>{data}</p> : <p>{initialText}</p>}
+      {clicked ? <p>{clickedText}</p> : <p>{initialText}</p>}
     </div>
   );
 };
