@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ClickableText = () => {
+const ClickableText = ({ initialText, clickedText }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -9,7 +9,7 @@ const ClickableText = () => {
 
   return (
     <div onClick={handleClick}>
-      {clicked ? <p>You clicked me!</p> : <p>Click me!</p>}
+      {clicked ? <p>{clickedText}</p> : <p>{initialText}</p>}
     </div>
   );
 };

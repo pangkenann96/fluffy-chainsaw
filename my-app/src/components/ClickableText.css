@@ -1,0 +1,10 @@
+.clickable-text {
+    display: inline-block;
+    padding: 8px;
+    background-color: #eee;
+    cursor: pointer;
+  }
+  
+  .clickable-text:hover {
+    background-color: #ddd;
+  }

@@ -6,10 +6,7 @@ import ClickableText from './components/ClickableText';
 function App() {
   return (
     <div>
-      <ClickableText
-        unclickedText="Click me!"
-        clickedText="Thanks for clicking!"
-      />
+      <ClickableText initialText="Click me" clickedText="You clicked me!" />
     </div>
   );
 }
