@@ -5,7 +5,9 @@ import ClickableText from './components/ClickableText';
 
 function App() {
   return (
-    <div>
+    <div className="container">
+      <ClickableText/>
+      <ClickableText/>
       <ClickableText/>
     </div>
   );
