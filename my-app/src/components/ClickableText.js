@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ClickableText.css';
 
 const ClickableText = () => {
   const [clicked, setClicked] = useState(false);
@@ -32,7 +33,7 @@ const ClickableText = () => {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div className='clickable-text' onClick={handleClick}>
       {clicked ? <p>{clickedText}</p> : <p>{initialText}</p>}
     </div>
   );
