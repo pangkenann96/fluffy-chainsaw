@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './ClickableText.css';
 
-const ClickableText = () => {
+const ClickableText = ({ initialText: propsInitialText, clickedText: propsClickedText }) => {
   const [clicked, setClicked] = useState(false);
-  const [clickedText, setClickedText] = useState('');
-  const [initialText, setInitialText] = useState('');
+  const [clickedText, setClickedText] = useState(propsClickedText || '');
+  const [initialText, setInitialText] = useState(propsInitialText || '');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +13,10 @@ const ClickableText = () => {
       setInitialText(data.title);
     };
 
-    fetchData();
-  }, []);
+    if (!propsInitialText) {
+      fetchData();
+    }
+  }, [propsInitialText]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,12 +25,12 @@ const ClickableText = () => {
       setClickedText(data.title);
     };
 
-    if (clicked) {
+    if (clicked && !propsClickedText) {
       fetchData();
-    } else {
-      setClickedText('');
+    } else if (!clicked) {
+      setClickedText(propsClickedText || '');
     }
-  }, [clicked]);
+  }, [clicked, propsClickedText]);
 
   const handleClick = () => {
     setClicked(!clicked);
